@@ -99,6 +99,7 @@ The following properties can be configured (all are optional).
 
 
 * `access-key`, `secret-key`: access and secret keys of your AWS account; if not set, `iam-role` is used
+* `session-token`: set when using temporary security credentials
 * `iam-role`: IAM Role attached to EC2 instance used to fetch credentials (if `access-key`/`secret-key` not specified); if not set, default IAM Role attached to EC2 instance is used
 * `region`: region where Hazelcast members are running; default is the current region
 * `host-header`: `ec2`, `ecs`, or the URL of a EC2/ECS API endpoint; automatically detected by default
@@ -116,6 +117,7 @@ Hazelcast Client discovery parameters are the same as mentioned above.
 
 If Hazelcast Client is run **outside AWS**, then you need to always specify the following parameters:
 - `access-key`, `secret-key` - IAM role cannot be used from outside AWS
+- `session-token` - (optional) set when using temporary security credentials
 - `region` - it cannot be detected automatically
 - `use-public-ip` - must be set to `true`
 
@@ -226,6 +228,7 @@ config.getNetworkConfig().getInterfaces().setEnabled(true).addInterface("10.0.*.
 The following properties can be configured (all are optional).
 
 * `access-key`, `secret-key`: access and secret keys of AWS your account; if not set, IAM Task Role is used
+* `session-token`: set when using temporary security credentials
 * `region`: region where Hazelcast members are running; default is the current region
 * `cluster`: ECS cluster short name or ARN; default is the current cluster
 * `family`: filter to look only for ECS tasks with the given family name; mutually exclusive with `service-name`
@@ -243,6 +246,7 @@ Hazelcast Client discovery parameters are the same as mentioned above.
 
 If Hazelcast Client is run **outside ECS cluster**, then you need to always specify the following parameters:
 - `access-key`, `secret-key` - IAM role cannot be used from outside AWS
+- `session-token` - (optional) set when using temporary credentials 
 - `region` - it cannot be detected automatically
 - `cluster` - it cannot be detected automatically
 - `use-public-ip` - must be set to `true`
